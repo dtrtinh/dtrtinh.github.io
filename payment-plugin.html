@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Plugin cho WordPress & WHMCS</title>
+  <meta name="description" content="Payment Plugin cho WordPress & WHMCS - Tích hợp nhanh, An toàn, Realtime. Triển khai trong 1-2 ngày, Idempotency chống trùng, Webhook cập nhật ngay lập tức.">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body { scroll-behavior: smooth; }
+
+    .navbar { backdrop-filter: blur(10px); }
+
+    .hero {
+      background: radial-gradient(circle at top, #0d6efd, #0a0f2c);
+      color: white;
+      padding: 120px 0;
+      text-align: center;
+    }
+
+    .section { padding: 90px 0; }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      transition: 0.3s;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+
+    .pricing-card {
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid #eee;
+    }
+
+    .pricing-card.featured {
+      border: 2px solid #0d6efd;
+      transform: scale(1.05);
+    }
+
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s ease;
+    }
+
+    .slide-in-left.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .bounce-in {
+      animation: bounceIn 1s ease-out;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .floating-cta {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      z-index: 99;
+      display: none;
+    }
+
+    .cta { background: #212529; color: white; padding: 60px 0; }
+  </style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Payment Plugin</a>
+    <button class="navbar-toggler" data-bs-toggle= bounce-in"collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a href="#introduction" class="nav-link">Giới thiệu</a></li>
+        <li class="nav-item"><a href="#problems" class="nav-link">Vấn đề</a></li>
+        <li class="nav-item"><a href="#solution" class="nav-link">Giải pháp</a></li>
+        <li class="nav-item"><a href="#benefits" class="nav-link">Lợi ích</a></li>
+        <li class="nav-item"><a href="#audience" class="nav-link">Đối tượng</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link">Liên hệ</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="container">
+    <h1 class="display-5 fw-bold mb-4">Tích hợp thanh toán ví điện tử cho Nền tảng Open Source: WordPress & WHMCS</h1>
+    <p class="lead mb-4">Triển khai trong 1–2 ngày • Webhook realtime • Không lệch đơn</p>
+    <a href="#contact" class="btn btn-light btn-lg mt-3">🚀 Yêu cầu demo</a>
+  </div>
+</section>
+
+<!-- INTRODUCTION -->
+<section class="section bg-light" id="introduction">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 fade-in">
+        <h2 class="fw-bold mb-4">1. Giới thiệu</h2>
+        <p>Tôi là developer chuyên xây dựng hệ thống backend và tích hợp thanh toán. Hiện tại tôi đã phát triển một plugin thanh toán ví điện tử (ví dụ: Onfin / các ví nội địa khác) có thể tích hợp trực tiếp vào các nền tảng phổ biến như:</p>
+        <ul class="list-unstyled">
+          <li><i class="bi bi-check-circle-fill text-success me-2"></i>WordPress (WooCommerce)</li>
+          <li><i class="bi bi-check-circle-fill text-success me-2"></i>WHMCS</li>
+          <li><i class="bi bi-check-circle-fill text-success me-2"></i>Các hệ thống PHP custom</li>
+        </ul>
+        <p>Plugin giúp doanh nghiệp nhận thanh toán nhanh chóng – tự động – an toàn mà không cần xây dựng lại từ đầu.</p>
+      </div>
+      <div class="col-lg-6 slide-in-left">
+        <img src="assets/Tích-hợp-thanh-toán-điện-tử.png" alt="Payment Integration" class="img-fluid rounded shadow">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section class="section" id="problems">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5 fade-in">2. Vấn đề hiện tại của doanh nghiệp</h2>
+    <p class="text-center mb-4 fade-in">Nhiều hệ thống open source đang gặp các vấn đề:</p>
+    <div class="row">
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-x-circle-fill text-danger fs-1 mb-3"></i>
+            <h5 class="card-title">Chưa hỗ trợ ví điện tử nội địa</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-clock-fill text-warning fs-1 mb-3"></i>
+            <h5 class="card-title">Tích hợp mất nhiều thời gian & chi phí</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-arrow-repeat text-secondary fs-1 mb-3"></i>
+            <h5 class="card-title">Thiếu retry / idempotency</h5>
+            <p class="card-text">Dễ bị double transaction</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-exclamation-triangle-fill text-danger fs-1 mb-3"></i>
+            <h5 class="card-title">Khó kiểm soát trạng thái</h5>
+            <p class="card-text">Pending, success, failed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="section bg-light" id="solution">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5 fade-in">3. Giải pháp của tôi</h2>
+    <div class="row">
+      <div class="col-lg-4 mb-4 fade-in">
+        <div class="card card-hover h-50">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-gear-fill text-primary me-2"></i>Tính năng chính</h5>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Tích hợp nhanh qua API ví điện tử</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Hỗ trợ callback (webhook) realtime</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Xử lý idempotency (tránh trùng giao dịch)</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Mapping trạng thái thanh toán rõ ràng</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Log & debug đầy đủ</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card card-hover h-50 mt-4">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-shield-check text-primary me-2"></i>Tương thích</h5>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>WooCommerce Payment Gateway</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>WHMCS Payment Module</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>REST API cho hệ thống riêng</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 mb-8 fade-in">
+        <div class="card card-hover h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-arrow-right-circle text-primary me-2"></i>Luồng hoạt động</h5>
+            <p>User thanh toán → Redirect ví → Thanh toán → Webhook callback → Update trạng thái → Hoàn tất đơn hàng</p>
+
+            <div class="slide-in-right">
+              <img src="assets/Sơ-đồ-quy-trình-thanh-toán-trực-tuyến.png" alt="Payment Flow" class="img-fluid rounded shadow">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section" id="benefits">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5 fade-in">4. Lợi ích mang lại</h2>
+    <div class="row">
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-rocket-fill text-primary fs-1 mb-3"></i>
+            <h5 class="card-title">Triển khai nhanh</h5>
+            <p class="card-text">1–2 ngày</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-graph-up text-success fs-1 mb-3"></i>
+            <h5 class="card-title">Tăng tỷ lệ chuyển đổi</h5>
+            <p class="card-text">Thanh toán</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-shield-lock-fill text-warning fs-1 mb-3"></i>
+            <h5 class="card-title">Giảm rủi ro</h5>
+            <p class="card-text">Sai lệch giao dịch</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-gear-wide-connected text-info fs-1 mb-3"></i>
+            <h5 class="card-title">Dễ mở rộng</h5>
+            <p class="card-text">Thêm nhiều ví khác</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARGET AUDIENCE -->
+<section class="section bg-light" id="audience">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5 fade-in">5. Đối tượng phù hợp</h2>
+    <div class="row">
+      <div class="col-md-6 mb-4 fade-in">
+        <div class="card card-hover h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-shop text-primary me-2"></i>Website bán hàng</h5>
+            <p class="card-text">WordPress / WooCommerce</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4 fade-in">
+        <div class="card card-hover h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-server text-success me-2"></i>Hệ thống bán hosting</h5>
+            <p class="card-text">WHMCS</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4 fade-in">
+        <div class="card card-hover h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-cloud text-info me-2"></i>SaaS / nền tảng subscription</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4 fade-in">
+        <div class="card card-hover h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-wallet text-warning me-2"></i>Nhà cung cấp ví điện tử</h5>
+            <p class="card-text">Cần mở rộng merchant</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLABORATION -->
+<section class="section" id="collaboration">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5 fade-in">6. Hợp tác</h2>
+    <div class="row">
+      <div class="col-lg-6 mb-4 fade-in">
+        <div class="card card-hover h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-people-fill text-primary me-2"></i>Khách hàng sử dụng Open Source</h5>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Cần tích hợp thanh toán nhanh</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Có thể customize theo nhu cầu</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4 fade-in">
+        <div class="card card-hover h-100">
+          <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-building text-success me-2"></i>Nhà cung cấp Ví điện tử</h5>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Muốn mở rộng hệ sinh thái merchant</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Cần plugin sẵn cho WordPress / WHMCS</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNICAL STRENGTHS -->
+<section class="section bg-light" id="technical">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5 fade-in">7. Điểm mạnh kỹ thuật</h2>
+    <div class="row">
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-code-slash text-primary fs-1 mb-3"></i>
+            <h5 class="card-title">Backend chuẩn RESTful</h5>
+            <p class="card-text">Laravel</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-key-fill text-success fs-1 mb-3"></i>
+            <h5 class="card-title">Xử lý transaction an toàn</h5>
+            <p class="card-text">Idempotency key</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-arrow-clockwise text-warning fs-1 mb-3"></i>
+            <h5 class="card-title">Retry + queue</h5>
+            <p class="card-text">Đảm bảo không mất giao dịch</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 fade-in">
+        <div class="card card-hover h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-diagram-3 text-info fs-1 mb-3"></i>
+            <h5 class="card-title">Dễ dàng scale</h5>
+            <p class="card-text">Theo microservices</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="cta text-center" id="contact">
+    <div class="container">
+        <h2 class="fw-bold">🚀 Sẵn sàng triển khai ngay?</h2>
+        <p class="mt-3">Liên hệ để demo trực tiếp plugin và nhận báo giá chi tiết</p>
+        <p class="mt-3">Hỗ trợ test sandbox</p>
+        <p class="mt-3">Customize theo API của từng ví</p>
+        <p>Email: <a href="mailto:tinhdev@gmail.com" class="text-white">tinhdev@gmail.com</a></p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center p-3 bg-dark text-white">
+    © 2026 Payment Plugin - All rights reserved
+</footer>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta">
+  <a href="#contact" class="btn btn-danger bounce-in">Chat ngay</a>
+</div>
+
+<!-- SCROLL TOP -->
+
+<button onclick="scrollToTop()" id="scrollTopBtn" class="btn btn-primary">↑</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const btn = document.getElementById("scrollTopBtn");
+  window.onscroll = () => {
+    btn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+  };
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  const faders = document.querySelectorAll('.fade-in');
+  const sliders = document.querySelectorAll('.slide-in-left');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('show');
+    });
+  }, { threshold: 0.2 });
+  faders.forEach(el => observer.observe(el));
+  sliders.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
