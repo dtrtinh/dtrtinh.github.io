@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HISDC Web - Hệ thống Quản lý Dự án & CRM Chuyên nghiệp</title>
+    <meta name="description" content="Giải pháp toàn diện cho doanh nghiệp hiện đại. Tích hợp quản lý dự án, nhiệm vụ, đội ngũ và khách hàng với giao diện tiếng Việt thân thiện.">
+    <meta name="keywords" content="HISDC Web, quản lý dự án, CRM, doanh nghiệp Việt Nam, quản lý nhiệm vụ, quản lý đội ngũ, quản lý khách hàng, báo cáo thời gian thực, API tích hợp">
+
+    <meta property="og:title" content="HISDC Web - Hệ thống Quản lý Dự án & CRM Chuyên nghiệp">
+    <meta property="og:description" content="Giải pháp toàn diện cho doanh nghiệp hiện đại. Tích hợp quản lý dự án, nhiệm vụ, đội ngũ và khách hàng với giao diện tiếng Việt thân thiện.">
+    <meta property="og:image" content="assets/project-management-crm-platform.png">
+    <meta property="og:url" content="https://dtrtinh.github.io/project-management-crm-platform.html">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            scroll-behavior: smooth;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            backdrop-filter: blur(10px);
+        }
+        .hero-section {
+            background: radial-gradient(circle at top, #667eea, #0f123c);
+            color: white;
+            padding: 120px 0;
+        }
+        .hero-section p {
+            color: white;
+        }
+        .section {
+            padding: 90px 0;
+        }
+        .card-hover:hover,
+        .feature-card:hover {
+            transform: translateY(-8px);
+            transition: 0.3s;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .feature-card {
+            transition: transform 0.3s ease;
+            border: none;
+            border-radius: 20px;
+            min-height: 100%;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        .slide-in-left.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .bounce-in {
+            animation: bounceIn 1s ease-out;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .cta-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 80px 0;
+        }
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">Trang chủ</a>
+            <a class="navbar-brand fw-bold" href="#">HISDC Web</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">Giới thiệu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Tính năng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#api">API</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#security">Bảo mật</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center" data-aos="fade-in">
+        <div class="container">
+            <h1 class="display-4 fw-bold bounce-in" data-aos="zoom-in">Hệ thống Quản lý Dự án & CRM Chuyên nghiệp</h1>
+            <p class="lead mt-4" data-aos="fade-up" data-aos-delay="200">HISDC Web cung cấp giải pháp toàn diện cho doanh nghiệp Việt Nam quản lý dự án, nhiệm vụ, đội ngũ và khách hàng.</p>
+            <p data-aos="fade-up" data-aos-delay="400">Tích hợp quyền truy cập theo vai trò, báo cáo thời gian thực và trải nghiệm tiếng Việt thân thiện.</p>
+            <a href="#contact" class="btn btn-light btn-lg mt-3" data-aos="fade-up" data-aos-delay="600">Liên hệ ngay</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2 class="section-title">Về HISDC Web</h2>
+                    <p class="lead mb-4">Nền tảng quản lý dự án và CRM doanh nghiệp với giao diện tiếng Việt, múi giờ Hồ Chí Minh và kiến trúc API-driven hiện đại cho doanh nghiệp Việt.</p>
+                </div>
+            </div>
+            <div class="row text-center mt-5">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="fs-1 fw-bold text-primary">500+</div>
+                    <div class="text-muted mt-2">Dự án đã quản lý</div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="fs-1 fw-bold text-primary">1000+</div>
+                    <div class="text-muted mt-2">Người dùng hoạt động</div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="fs-1 fw-bold text-primary">99.9%</div>
+                    <div class="text-muted mt-2">Uptime hệ thống</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Tính năng nổi bật</h2>
+                <p class="lead">Các module cốt lõi giúp tối ưu hóa quy trình làm việc và quản lý khách hàng.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-right">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon"><i class="fas fa-project-diagram"></i></div>
+                            <h5 class="card-title">Quản lý Dự án</h5>
+                            <p class="card-text">Workflow trạng thái, phân công đội ngũ, theo dõi tiến độ và quản lý tài liệu tập trung.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon"><i class="fas fa-tasks"></i></div>
+                            <h5 class="card-title">Quản lý Nhiệm vụ</h5>
+                            <p class="card-text">Nhiệm vụ cha-con, checklist chi tiết và tính lương tự động theo loại công việc.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-left">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon"><i class="fas fa-users"></i></div>
+                            <h5 class="card-title">Quản lý Đội ngũ</h5>
+                            <p class="card-text">Phân công nhân sự, theo dõi lịch trình và giao tiếp nội bộ hiệu quả.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-right" data-aos-delay="200">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
+                            <h5 class="card-title">Kiểm soát Truy cập</h5>
+                            <p class="card-text">Phân quyền vai trò, xác thực 2FA và audit trail cho môi trường làm việc an toàn.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon"><i class="fas fa-address-book"></i></div>
+                            <h5 class="card-title">Quản lý Khách hàng</h5>
+                            <p class="card-text">Cơ sở dữ liệu khách hàng toàn diện với phân cấp địa lý và liên kết dự án chặt chẽ.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-left" data-aos-delay="200">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                            <h5 class="card-title">Báo cáo & Dashboard</h5>
+                            <p class="card-text">Báo cáo chuyên sâu, dashboard thời gian thực và xuất dữ liệu Excel/CSV.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Section -->
+    <section id="api" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">API & Khả năng tích hợp</h2>
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <h4>Public API & Dashboard</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">API quản lý dự án, nhiệm vụ và khách hàng</li>
+                        <li class="list-group-item">Tích hợp dữ liệu thời gian thực và báo cáo KPI</li>
+                        <li class="list-group-item">Tùy chỉnh dashboard theo vai trò</li>
+                        <li class="list-group-item">Hỗ trợ đa ngôn ngữ và múi giờ Việt Nam</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <h4>Admin & Kiểm soát</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Quản lý người dùng, vai trò và quyền truy cập</li>
+                        <li class="list-group-item">Xác thực 2FA và audit trail</li>
+                        <li class="list-group-item">Quản lý tài liệu và file đính kèm</li>
+                        <li class="list-group-item">Thông báo và nhắc nhở tự động cho đội ngũ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section id="security" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Bảo mật & Kiến trúc</h2>
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <h4>JWT Authentication</h4>
+                    <p>Truy cập quản trị an toàn với xác thực token, tự động làm mới và phân quyền chi tiết RBAC.</p>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <h4>Kiến trúc API-driven</h4>
+                    <p>Frontend và backend tách biệt, dễ mở rộng và tích hợp với hệ thống nội bộ, CRM, ERP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="cta-section">
+        <div class="container text-center">
+            <h2 data-aos="zoom-in">Sẵn sàng triển khai HISDC Web?</h2>
+            <p data-aos="fade-up" data-aos-delay="200">Liên hệ với chúng tôi để được tư vấn giải pháp quản lý dự án và CRM phù hợp cho doanh nghiệp của bạn.</p>
+            <p data-aos="fade-up" data-aos-delay="300">Email: <a href="mailto:info@hisdc.com" class="text-white">info@hisdc.com</a></p>
+            <a href="mailto:info@hisdc.com" class="btn btn-light btn-lg mt-3" data-aos="fade-up" data-aos-delay="400">Gửi yêu cầu ngay</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2026 HISDC Web. Tất cả quyền được bảo lưu.</p>
+            <p class="mb-0">Hệ thống Quản lý Dự án & CRM chuyên nghiệp cho doanh nghiệp Việt Nam</p>
+        </div>
+    </footer>
+
+    <!-- SCROLL TOP -->
+    <button onclick="scrollToTop()" id="scrollTopBtn" class="btn btn-primary">↑</button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        const btn = document.getElementById("scrollTopBtn");
+        window.onscroll = () => {
+            btn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+            updateActiveLink();
+        };
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        const navLinks = document.querySelectorAll('#nav .nav-link');
+        function updateActiveLink() {
+            const sections = document.querySelectorAll('section[id]');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html></content>
+<parameter name="filePath">d:\Flutter\dtrtinh.github.io\landing-page.html
