@@ -18,6 +18,12 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Fancybox CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.css"
+    />
 
     <style>
         body { scroll-behavior: smooth; background-color: #f8f9fa; }
@@ -91,7 +97,9 @@
                 </div>
             </div>
             <div class="col-lg-6 order-lg-1">
-                <img src="assets/project-management-crm-platform.png" alt="HISDC Web" class="img-fluid rounded shadow">
+                <a data-fancybox="gallery" href="assets/project-management-crm-platform.png">
+                    <img src="assets/project-management-crm-platform.png" alt="HISDC Web" class="img-fluid rounded shadow" style="cursor: pointer;">
+                </a>
             </div>
         </div>
     </div>
@@ -117,7 +125,9 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <img src="assets/Tích-hợp-thanh-toán-điện-tử.png" alt="Payment Plugin" class="img-fluid rounded shadow">
+                <a data-fancybox="gallery" href="assets/Tích-hợp-thanh-toán-điện-tử.png">
+                    <img src="assets/Tích-hợp-thanh-toán-điện-tử.png" alt="Payment Plugin" class="img-fluid rounded shadow" style="cursor: pointer;">
+                </a>
             </div>
         </div>
     </div>
@@ -143,7 +153,9 @@
                 </div>
             </div>
             <div class="col-lg-6 order-lg-1">
-                <img src="assets/Kiến-trúc-SSG-và-Realtime.png" alt="SSG Platform" class="img-fluid rounded shadow">
+                <a data-fancybox="gallery" href="assets/Kiến-trúc-SSG-và-Realtime.png">
+                    <img src="assets/Kiến-trúc-SSG-và-Realtime.png" alt="SSG Platform" class="img-fluid rounded shadow" style="cursor: pointer;">
+                </a>
             </div>
         </div>
     </div>
@@ -181,7 +193,9 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <img src="assets/Business-Website-Builder-Sales-Platform.png" alt="Business Website Builder & Sales Platform" class="img-fluid rounded shadow">
+                <a data-fancybox="gallery" href="assets/Business-Website-Builder-Sales-Platform.png">
+                    <img src="assets/Business-Website-Builder-Sales-Platform.png" alt="Business Website Builder & Sales Platform" class="img-fluid rounded shadow" style="cursor: pointer;">
+                </a>
             </div>
         </div>
     </div>
@@ -210,7 +224,9 @@
 <button onclick="scrollToTop()" id="scrollTopBtn" class="btn btn-primary">↑</button>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<!-- Fancybox JS -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.umd.js"></script>
+    
 <script>
     const btn = document.getElementById("scrollTopBtn");
     window.onscroll = () => {
@@ -260,6 +276,18 @@
     }
 
     window.addEventListener('scroll', updateActiveLink);
+
+    // Initialize Fancybox v4
+    Fancybox.bind('[data-fancybox]', {
+        Carousel: {
+            Zoomable: {
+            Panzoom: {
+                clickAction: "iterateZoom",
+                maxScale: 2,
+            },
+            },
+        },
+    });    
 </script>
 
 </body>
